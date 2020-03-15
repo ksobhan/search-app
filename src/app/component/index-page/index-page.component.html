@@ -1,0 +1,34 @@
+  <div class="conatiner" style="padding-top:20px;">  
+    <div class="col-sm-5" style="padding-top:20px;padding-bottom:20px;" >  
+        Search for <input class="form-control" type="text" placeholder="Title/Author/ISBN etc......" [(ngModel)]="searchBook">        
+    </div>
+  <h2  style="text-align:center">List of Books </h2>
+  <div *ngFor="let book of books" class="group">   
+    <table class="table table-striped">  
+        <thead class="thead-dark">  
+          <tr>  
+            <th>ISBN</th>  
+            <th>Title</th>  
+            <th>Author</th>          
+            <th>Publisher</th>    
+            <th>Language</th>   
+            <th>Favorite</th>               
+          </tr>  
+        </thead>  
+        <tbody>  
+            <tr *ngFor="let book of books | async |filter:searchBook"> 
+            <td>{{book.id}}</td>  
+            <td>{{book.title}}</td>  
+            <td>{{book.author}}</td>  
+            <td>{{book.publisher}}</td>   
+            <td>{{book.language}}</td>           
+            <td><a href="_blank" (onclick)="AddFavorite(book)" >Add To Favorite</a></td>           
+          </tr>  
+        </tbody>  
+        <ul class="pagination">  
+            <pagination-controls ></pagination-controls>  
+        </ul> 
+    </table>  
+    <input type="button" (onclick)="DisplayFavorites()" value="Go To Favorites">
+  </div>
+  </div>
